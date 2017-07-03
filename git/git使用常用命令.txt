@@ -1,0 +1,13 @@
+1、初始化git仓库 git init
+2、查看仓库状态 git status
+3、设置git用户名／邮箱 git config --global user.name "fantesycy"  git config --global user.email "fantestct@163.com"
+4、生成key ssh-keygen -t rsa -C “fantesycy@163.com”
+5、像暂存区添加文件 git add 1.txt
+6、往暂存区添加完文件后提交 git commit -m"111"
+7、查看日志 git log  ，回溯查询日志 git reflog；以图表形式查看分支git log -graph
+8、查看文件的不同 git diff
+9、查看分支 git branch ，新建分支git branch fenzhi1；切换分支git checkout fenzhi1；合并分支git merge --no--ff fenzhi1
+10、回溯版本 git reset -hard “哈希码"
+11、添加远程仓库git remote add origin “项目地址”，推送至远程仓库 git push -u origin 分支号
+12、从远程仓库克隆项目 git clone “项目地址”，查询远程仓库的分支git branch -a;获取远程仓库的分支git checkout -b 本地分支号 远程分支号；提交至远程仓库git push
+13、获取远程仓库的最新分支 git pull origin master
