@@ -1,0 +1,4 @@
+1、spring-boot 默认使用tomcat的连接池
+2、spring-boot 默认有三个连接池，分别是：    private static final String[] DATA_SOURCE_TYPE_NAMES = new String[]{"org.apache.tomcat.jdbc.pool.DataSource", "com.zaxxer.hikari.HikariDataSource", "org.apache.commons.dbcp.BasicDataSource", "org.apache.commons.dbcp2.BasicDataSource"};
+3、DataSourceConfiguration.java这个类主要说明了默认的三种连接池的配置
+4、如果要使用额外的连接池，仅需要生成dataSource 例如集成Druid 
