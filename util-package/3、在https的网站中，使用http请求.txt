@@ -1,0 +1,13 @@
+问题：碰到这个问题朋友肯定已经了解了关于http和https的区别，并且也知道了在https页面下的“相对路径”表示的请求都会与页面的协议保持一致。如果想在https页面下发送http的请求，如果只把链接写死成为http的“静态路径”是不够的，那样会导致http的请求与总页面https的请求的session不一致，原因下边讲。
+
+原因：原因是https的请求中服务器发回的cookie是标记为"secure"的，而http的请求时非"secure","由于在服务器端secure"的cookie不会兼容非"secure"的，所以当http的请求携带着同一jsessionid的cookie到达服务器时，服务器拒绝非"secure"，进而返回的结果是一个新的非"secure"的cookie，于是两个session就不同了。
+
+解决办法：由原因分析可知，两个session不同，更具体说是cookie的状态不同。那么办法是，在接收到第一个https请求的响应后 到 发送下面的http请求之前，将cookie去"secure"状态，但是又要保证jsessionid不变。具体操作可以新建一个cookie(新建的是非"secure"状态)，然后赋予同一个jessionid，然后加入response中。
+
+
+
+代码如下：
+
+Cookie cookie = new Cookie("JSESSIONID", req.getSession().getId());
+cookie.setPath(req.getContextPath());
+resp.addCookie(cookie);
